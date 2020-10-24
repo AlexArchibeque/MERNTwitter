@@ -12,3 +12,9 @@ mongoose
 
 app.get("/", (req, res) => res.send("hello asdasdasdasdasd world!"));
 app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+const users = require("./routes/api/users");
+const tweets = require("./routes/api/tweets");
+
+app.use("/api/users", users)
+app.use("/api/tweets", tweets)
