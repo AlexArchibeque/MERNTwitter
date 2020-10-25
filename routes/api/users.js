@@ -6,8 +6,19 @@ const bcrypt = require("bcryptjs");
 const User = require('../../models/User');
 const keys = require('../../config/keys');
 
+const passport = require('passport');
+
 router.get("/users", (req, res) => res.json({ msg: "This is the users route" }));
 
+// users.js
+// You may want to start commenting in information about your routes so that you can find the appropriate ones quickly.
+router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
+    res.json({
+        id: req.user.id,
+        handle: req.user.handle,
+        email: req.user.email
+      });
+  })
 
 
 router.post('/register', (req, res) => {
